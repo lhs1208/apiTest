@@ -1,1 +1,55 @@
+- 내장 톰캣이 있는 툴에서 spring boot을 사용해서 import 받은 뒤에 start
 
+- 테스트 방법
+1. upload 방법
+postman에서 post로 놓고 아래 경로를 실행한다.
+http://localhost:8080/transactions/upload?(data 폴더의 경로를 복사)
+ex) http://localhost:8080/transactions/upload?filePath=D:/intelliJ/gitIntelli/apiTestdata/sample.csv
+
+2. 데이터확인 작업
+1번 실행 이후 postman에서 get으로 놓고
+http://localhost:8080/transactions
+실행하면 정상적으로 나오는 것 확인한다.
+
+3. 수정 방법
+postman에서 put으로 놓은 뒤에
+body 안에 아래 데이터를 입력
+{
+"id": 1,
+"time": "2024-11-20 12:00",
+"subscribers": 40,
+"unsubscribers": 5,
+"paymentAmount": "50123123000",
+"usageAmount": "30012312300",
+"salesAmount": "100012312300"
+}
+
+http://localhost:8080/transactions/(수정할 id 값)
+ex) http://localhost:8080/transactions/1
+실행한 다음 2번을 실행하여 정상적으로 수정되었는지 확인한다.
+
+4. 삭제 방법
+postman에서 delete로 놓고
+http://localhost:8080/transactions/(삭제할 id 값)
+ex) http://localhost:8080/transactions/1
+실행한다.
+
+5. RateLimitingFilter 테스트 방법
+new Collection에 get으로 놓고
+http://localhost:8080/transactions 추가한다.
+그다음 scripts에서 post-response에 아래 로그를 추가한다.
+pm.test("Status code is 200 or 429", function () {
+pm.response.to.have.status.oneOf([200, 429]);
+});
+
+pm.test("Response time is within limit", function () {
+pm.expect(pm.response.responseTime).to.be.below(500); // 응답 시간 500ms 이하
+});
+
+runner에서 20개 이상을 실행하여서 동작 여부 파악한다.
+
+6. IP 방화벽 확인
+application.properties에서 지정된 아이피를 다른 아이피로 놓고 테스트 한다.
+
+7. 로그 확인 방법
+import 된 프로젝트에 log가 잘 생성되는지 확인한다.

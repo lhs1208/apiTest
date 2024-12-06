@@ -19,17 +19,13 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web' // 웹 애플리케이션 개발 필수 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA를 위한 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security 의존성
+    implementation 'com.h2database:h2' // 내장 H2 데이터베이스
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0' // Servlet API
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.h2database:h2'
-
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
 }
 
 tasks.named('test') {

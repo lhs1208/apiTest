@@ -29,18 +29,18 @@
 - Spring Boot 기반 프로젝트를 import 후 실행 (내장 톰캣 사용)
 
 
-**📤 1. 데이터 업로드**
+**1. 데이터 업로드**
 - POST 요청으로 파일 업로드
 - 경로: http://localhost:8080/transactions/upload?filePath={CSV 파일 경로}
 - 예시: http://localhost:8080/transactions/upload?filePath=D:/intelliJ/gitIntelli/apiTestdata/sample.csv
 
 
-**🔍 2. 데이터 확인**
+**2. 데이터 확인**
 - GET 요청으로 업로드된 데이터 확인
 - 경로: http://localhost:8080/transactions
 
 
-**✏️ 3. 데이터 수정**
+**3. 데이터 수정**
 - PUT 요청으로 데이터를 수정
 - 경로: http://localhost:8080/transactions/{id}
 - 예시 데이터:
@@ -56,12 +56,12 @@ json
   "salesAmount": "100012312300"
 }
 
-**❌ 4. 데이터 삭제**
+**4. 데이터 삭제**
 - DELETE 요청으로 데이터를 삭제
 - 경로: http://localhost:8080/transactions/{id}
 - 예시: http://localhost:8080/transactions/1
 
-**⏳ 5. Rate Limiting 테스트**
+**5. Rate Limiting 테스트**
 - Postman으로 GET 요청 시 아래 스크립트를 추가:
 - javascript
 pm.test("Status code is 200 or 429", function () {
@@ -74,10 +74,10 @@ pm.test("Response time is within limit", function () {
 
 - Runner에서 20개 이상의 요청을 실행해 동작 확인
 
-**🔐 6. IP 방화벽 테스트**
+**6. IP 방화벽 테스트**
 - application.properties에서 지정된 IP를 다른 IP로 설정 후 테스트
 
-**📋 7. 로그 확인**
+**7. 로그 확인**
 - 프로젝트 실행 후 log 파일이 정상적으로 생성되는지 확인
 
 
